@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Munros.Core.Interfaces;
 using Munros.Infrastructure.Data;
 
 namespace Munros.API
@@ -22,6 +23,9 @@ namespace Munros.API
         {
             services.AddDbContext<AppDbContext>(options =>
                 options.UseInMemoryDatabase("Munros"));
+
+            services.AddScoped<IMunroRepository, MunroRepository>();
+
             services.AddControllers();
         }
 
