@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Munros.API", "Munros.API\Munros.API.csproj", "{BC1B111D-CA44-481D-B06B-3B9C2A3179FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munros.Core", "Munros.Core\Munros.Core.csproj", "{CAC7AF5B-ACBF-4390-9ADA-46DE24BDB186}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munros.Infrastructure", "Munros.Infrastructure\Munros.Infrastructure.csproj", "{C35E03B6-8231-49F9-AF86-A578EE4D2535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munros.Test", "Munros.Test\Munros.Test.csproj", "{F1334FC8-1B20-4526-9AD8-F71A12529923}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC1B111D-CA44-481D-B06B-3B9C2A3179FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1B111D-CA44-481D-B06B-3B9C2A3179FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1B111D-CA44-481D-B06B-3B9C2A3179FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1B111D-CA44-481D-B06B-3B9C2A3179FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAC7AF5B-ACBF-4390-9ADA-46DE24BDB186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAC7AF5B-ACBF-4390-9ADA-46DE24BDB186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAC7AF5B-ACBF-4390-9ADA-46DE24BDB186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAC7AF5B-ACBF-4390-9ADA-46DE24BDB186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C35E03B6-8231-49F9-AF86-A578EE4D2535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C35E03B6-8231-49F9-AF86-A578EE4D2535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C35E03B6-8231-49F9-AF86-A578EE4D2535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C35E03B6-8231-49F9-AF86-A578EE4D2535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1334FC8-1B20-4526-9AD8-F71A12529923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1334FC8-1B20-4526-9AD8-F71A12529923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1334FC8-1B20-4526-9AD8-F71A12529923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1334FC8-1B20-4526-9AD8-F71A12529923}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1960BFC-2163-434E-B5C8-19E97C0370CB}
+	EndGlobalSection
+EndGlobal
