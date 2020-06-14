@@ -9,6 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Munros.Core\Munros.Core.csproj" />
     <ProjectReference Include="..\Munros.Infrastructure\Munros.Infrastructure.csproj" />
   </ItemGroup>
