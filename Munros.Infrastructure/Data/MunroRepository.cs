@@ -27,6 +27,16 @@ namespace Munros.Infrastructure.Data
                 munros = munros.Where(m => m.Category.ToLower() == queryParameters.Category.ToLower());
             }
 
+            if (queryParameters.MinHeight != null)
+            {
+                munros = munros.Where(m => m.Height >= queryParameters.MinHeight);
+            }
+
+            if (queryParameters.MaxHeight != null)
+            {
+                munros = munros.Where(m => m.Height <= queryParameters.MaxHeight);
+            }
+
             if (queryParameters.ResultsLimit > 0)
             {
                 munros = munros.Take(queryParameters.ResultsLimit);

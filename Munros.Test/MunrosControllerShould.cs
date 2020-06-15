@@ -75,5 +75,39 @@ namespace Munros.Test
 
             Assert.Equal(2, result.Count());
         }
+
+        [Fact]
+        public async Task ReturnOnlyResultsOfTheMinimumHeightRequested()
+        {
+            var response = await _client.GetAsync("/munros?minheight=932");
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<IEnumerable<Munro>>(stringResponse).ToList();
+
+            Assert.DoesNotContain(result, m => m.Height < 932);
+        }
+
+        [Fact]
+        public async Task ReturnOnlyResultsUpToAndIncludingTheMaximumHeightRequested()
+        {
+            var response = await _client.GetAsync("/munros?maxheight=932");
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<IEnumerable<Munro>>(stringResponse).ToList();
+
+            Assert.DoesNotContain(result, m => m.Height > 932);
+        }
+
+        [Fact]
+        public async Task ReturnOnlyResultsWithinTheRangeOfTheMinAndMaxHeightsRequested()
+        {
+            var response = await _client.GetAsync("/munros?minheight=932&maxheight=1000");
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<IEnumerable<Munro>>(stringResponse).ToList();
+
+            Assert.DoesNotContain(result, m => m.Height < 932);
+            Assert.DoesNotContain(result, m => m.Height > 1000);
+        }
     }
 }
