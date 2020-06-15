@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Munros.Core.Entities;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Munros.Infrastructure.Data
 {
@@ -7,13 +10,44 @@ namespace Munros.Infrastructure.Data
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Munro>().HasData(
-                new Munro { Id = 1, Name = "Ben Chonzie", Height = 931, Category = "MUN", GridReference = "NN773308" },
-                new Munro { Id = 2, Name = "Ben Vorlich", Height = 985, Category = "MUN", GridReference = "NN629189" },
-                new Munro { Id = 7, Name = "Stob Binnein - Stob Coire an Lochain", Height = 1068, Category = "TOP", GridReference = "NN438220" },
-                new Munro { Id = 12, Name = "Cruach Ardrain - Stob Garbh SE Top", Height = 923.4, Category = "", GridReference = "NN412217" },
-                new Munro { Id = 28, Name = "Ben Vane", Height = 915.76, Category = "MUN", GridReference = "NN277098" }
-            );
+            modelBuilder.Entity<Munro>().HasData(CreateMunroObjectsFromCsv());
+        }
+
+        public static List<Munro> CreateMunroObjectsFromCsv()
+        {
+            List<Munro> munros = new List<Munro>();
+
+            try
+            {
+                string[] csvLines = File.ReadAllLines("munro-data.csv");
+                string[] values;
+
+                for (int i = 0; i < csvLines.Length; i++)
+                {
+                    if (i > 0)
+                    {
+                        values = csvLines[i].Split(',');
+
+                        munros.Add(
+                            new Munro
+                            {
+                                Id = int.Parse(values[0]),
+                                Name = values[6],
+                                Height = double.Parse(values[10]),
+                                Category = values[28],
+                                GridReference = values[14]
+                            }
+                        );
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Do something meaningful here e.g. wire-up of logging...
+                throw;
+            }
+
+            return munros;
         }
     }
 }

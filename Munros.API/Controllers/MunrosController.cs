@@ -29,7 +29,6 @@ namespace Munros.API.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "API exception");
             }
         }
