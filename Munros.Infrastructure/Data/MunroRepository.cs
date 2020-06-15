@@ -16,9 +16,16 @@ namespace Munros.Infrastructure.Data
             _context.Database.EnsureCreated();
         }
 
-        public async Task<Munro[]> GetMunrosAsync()
+        public async Task<Munro[]> GetMunrosAsync(QueryParameters queryParameters)
         {
             IQueryable<Munro> munros = _context.Munros;
+
+            if (!string.IsNullOrEmpty(queryParameters.Category) && queryParameters.Category.ToLower() != "either")
+            {
+                munros = munros.Where(m => m.Category.ToLower() == queryParameters.Category.ToLower());
+            }
+
+            munros = munros.Where(m => !string.IsNullOrEmpty(m.Category));
 
             return await munros.ToArrayAsync();
         }

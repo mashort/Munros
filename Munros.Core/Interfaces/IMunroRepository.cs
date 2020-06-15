@@ -5,6 +5,6 @@ namespace Munros.Core.Interfaces
 {
     public interface IMunroRepository
     {
-        Task<Munro[]> GetMunrosAsync();
+        Task<Munro[]> GetMunrosAsync(QueryParameters queryParameters);
     }
 }

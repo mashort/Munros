@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Munros.Core.Entities;
 using Munros.Core.Interfaces;
+using System;
 using System.Threading.Tasks;
 
 namespace Munros.API.Controllers
@@ -16,9 +19,19 @@ namespace Munros.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMunros()
+        public async Task<IActionResult> GetMunros([FromQuery] QueryParameters queryParameters)
         {
-            return Ok("OK.");
+            try
+            {
+                var results = await _repository.GetMunrosAsync(queryParameters);
+
+                return Ok(results);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "API exception");
+            }
         }
     }
 }
