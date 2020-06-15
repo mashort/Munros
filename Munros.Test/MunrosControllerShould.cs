@@ -64,5 +64,16 @@ namespace Munros.Test
             Assert.Contains(result, m => m.Category == "MUN");
             Assert.Contains(result, m => m.Category == "TOP");
         }
+
+        [Fact]
+        public async Task LimitNumberOfResultsReturnedToResultsLimitThatIsRequested()
+        {
+            var response = await _client.GetAsync("/munros?resultslimit=2");
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<IEnumerable<Munro>>(stringResponse).ToList();
+
+            Assert.Equal(2, result.Count());
+        }
     }
 }

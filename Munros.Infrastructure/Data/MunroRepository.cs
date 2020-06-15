@@ -20,12 +20,17 @@ namespace Munros.Infrastructure.Data
         {
             IQueryable<Munro> munros = _context.Munros;
 
+            munros = munros.Where(m => !string.IsNullOrEmpty(m.Category));
+
             if (!string.IsNullOrEmpty(queryParameters.Category) && queryParameters.Category.ToLower() != "either")
             {
                 munros = munros.Where(m => m.Category.ToLower() == queryParameters.Category.ToLower());
             }
 
-            munros = munros.Where(m => !string.IsNullOrEmpty(m.Category));
+            if (queryParameters.ResultsLimit > 0)
+            {
+                munros = munros.Take(queryParameters.ResultsLimit);
+            }
 
             return await munros.ToArrayAsync();
         }
