@@ -1,8 +1,10 @@
-﻿namespace Munros.Core.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace Munros.Core.Entities
 {
     public class Munro
     {
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Id { get; set; }
         public string Name { get; set; }
         public double Height { get; set; }

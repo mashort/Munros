@@ -14,5 +14,11 @@
     <ProjectReference Include="..\Munros.Infrastructure\Munros.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="munro-data.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>

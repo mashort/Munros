@@ -2,6 +2,7 @@
 using Munros.Core.Entities;
 using Munros.Core.Interfaces;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Munros.Infrastructure.Data
@@ -37,6 +38,16 @@ namespace Munros.Infrastructure.Data
                 munros = munros.Where(m => m.Height <= queryParameters.MaxHeight);
             }
 
+            if (!string.IsNullOrEmpty(queryParameters.SortBy))
+            {
+                // Check if the name of the property passed in through SortBy is a property of the Munro entity
+                if (typeof(Munro).GetProperty(queryParameters.SortBy, 
+                    BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance) != null)
+                {
+                    munros = munros.OrderByCustom(queryParameters.SortBy, queryParameters.SortOrder);
+                }
+            }
+            
             if (queryParameters.ResultsLimit > 0)
             {
                 munros = munros.Take(queryParameters.ResultsLimit);

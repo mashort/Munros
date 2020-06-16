@@ -109,5 +109,27 @@ namespace Munros.Test
             Assert.DoesNotContain(result, m => m.Height < 932);
             Assert.DoesNotContain(result, m => m.Height > 1000);
         }
+
+        [Fact]
+        public async Task ReturnResultsSortedByNameIfRequested()
+        {
+            var response = await _client.GetAsync("/munros?sortby=name");
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<IEnumerable<Munro>>(stringResponse).ToList();
+
+            Assert.Equal("Regular Munro 1", result.FirstOrDefault().Name);
+        }
+
+        [Fact]
+        public async Task ReturnResultsSortedByNameInDescendingOrderIfRequested()
+        {
+            var response = await _client.GetAsync("/munros?sortby=name&sortorder=desc");
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<IEnumerable<Munro>>(stringResponse).ToList();
+
+            Assert.Equal("Regular Top 1", result.FirstOrDefault().Name);
+        }
     }
 }
