@@ -43,10 +43,43 @@ The solution comprises of the following projects:
 Guide for users to get the solution up and running on their own system, including any any prerequisite software / dependencies...
 
 ### Prerequisites
-TODO
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 
 ### Running the API
-TODO
+Clone/Fork/Download this repo to your local machine.
+
+Open a terminal in the *Munros.API* folder and run the following command...
+```sh
+dotnet run
+```
+The API can then be accessed at https://localhost:5001/munros using you're preferred HTTP client (e.g. Postman, Insomnia) or a browser.
+
+**Search/Sort Parameters**
+- category - valid values are mun | top | either
+- resultslimit - valid value is a numeric e.g. 10
+- minheight - valid value is a numeric e.g. 930
+- maxheight - valid value is a numeric e.g. 1000
+- sortby - valid values are height | name
+- sortorder - valid values are asc | desc
+
+Sample query https://localhost:5001/munros?category=mun&resultslimit=10
+
+**Data**
+
+The data used by the solution can be found in *Munros.API/munro-data.csv*
 
 ### Running the Tests
-TODO
+The built-in tests can be run by opening a terminal in the *Munros.Test* folder and then running the following command...
+```sh
+dotnet test
+```
+
+## Enhancements / Next Steps
+a.k.a things I didn't have time to do :-)
+- Make the API more discoverable for devs by adding Swagger support via Swashbuckle
+- Add authentication/authorization - most likely OAuth -> OpenID Connect based
+- Add logging & monitoring
+- Add a proper database (e.g. SQL Server) to replace In-Memory DB
+- Containerise with Docker
+- More features...
