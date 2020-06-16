@@ -24,5 +24,18 @@
                 }
             }
         }
+
+        public bool MinMaxHeightValid()
+        {
+            if (MinHeight != null && MaxHeight != null)
+            {
+                if (MaxHeight <= MinHeight)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

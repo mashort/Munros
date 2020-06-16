@@ -23,6 +23,11 @@ namespace Munros.API.Controllers
         {
             try
             {
+                if (!queryParameters.MinMaxHeightValid())
+                {
+                    return BadRequest("Max height must be greater than min height");
+                }
+
                 var results = await _repository.GetMunrosAsync(queryParameters);
 
                 return Ok(results);
