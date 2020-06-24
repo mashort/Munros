@@ -30,7 +30,9 @@ namespace Munros.Test
                 new Munro { Id = 1, Name = "Regular Munro 1", Height = 931, Category = "MUN", GridReference = "MN112201" },
                 new Munro { Id = 2, Name = "Regular Munro 2", Height = 932, Category = "MUN", GridReference = "MN112202" },
                 new Munro { Id = 3, Name = "Regular Top 1", Height = 1000, Category = "TOP", GridReference = "TP112201" },
-                new Munro { Id = 4, Name = "Uncategorised Munro 1", Height = 923, Category = "", GridReference = "UC112201" }
+                new Munro { Id = 4, Name = "Uncategorised Munro 1", Height = 923, Category = "", GridReference = "UC112201" },
+                new Munro { Id = 5, Name = "Regular Top B", Height = 1000, Category = "TOP", GridReference = "TP112202" },
+                new Munro { Id = 6, Name = "Regular Top A", Height = 1000, Category = "TOP", GridReference = "TP112203" },
             };
 
             return munros;

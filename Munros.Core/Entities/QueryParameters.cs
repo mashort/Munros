@@ -7,20 +7,38 @@
         public double? MinHeight { get; set; }
         public double? MaxHeight { get; set; }
 
-        public string SortBy { get; set; } = "Name";
+        public string PrimarySortBy { get; set; } = "Name";
 
-        private string _sortOrder = "asc";
-        public string SortOrder
+        private string _primarySortOrder = "asc";
+        public string PrimarySortOrder
         {
             get
             {
-                return _sortOrder;
+                return _primarySortOrder;
             }
             set
             {
                 if (value == "asc" || value == "desc")
                 {
-                    _sortOrder = value;
+                    _primarySortOrder = value;
+                }
+            }
+        }
+
+        public string SecondarySortBy { get; set; }
+
+        private string _secondarySortOrder;
+        public string SecondarySortOrder
+        {
+            get
+            {
+                return _secondarySortOrder;
+            }
+            set
+            {
+                if (value == "asc" || value == "desc")
+                {
+                    _secondarySortOrder = value;
                 }
             }
         }

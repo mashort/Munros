@@ -113,7 +113,7 @@ namespace Munros.Test
         [Fact]
         public async Task ReturnResultsSortedByNameIfRequested()
         {
-            var response = await _client.GetAsync("/munros?sortby=name");
+            var response = await _client.GetAsync("/munros?primarysortby=name");
             response.EnsureSuccessStatusCode();
             var stringResponse = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<IEnumerable<Munro>>(stringResponse).ToList();
@@ -124,12 +124,24 @@ namespace Munros.Test
         [Fact]
         public async Task ReturnResultsSortedByNameInDescendingOrderIfRequested()
         {
-            var response = await _client.GetAsync("/munros?sortby=name&sortorder=desc");
+            var response = await _client.GetAsync("/munros?primarysortby=name&primarysortorder=desc");
+            response.EnsureSuccessStatusCode();
+            var stringResponse = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<IEnumerable<Munro>>(stringResponse).ToList();
+
+            Assert.Equal("Regular Top B", result.FirstOrDefault().Name);
+        }
+
+        [Fact]
+        public async Task ReturnResultsSortedByHeightDescAndThenNameAscIfRequested()
+        {
+            var response = await _client.GetAsync("/munros?category=TOP&primarysortby=height&primarysortorder=desc&secondarysortby=name&secondarysortorder=asc");
             response.EnsureSuccessStatusCode();
             var stringResponse = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<IEnumerable<Munro>>(stringResponse).ToList();
 
             Assert.Equal("Regular Top 1", result.FirstOrDefault().Name);
+            Assert.Equal("Regular Top B", result.LastOrDefault().Name);
         }
     }
 }
