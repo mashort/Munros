@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Munros.Core.Interfaces;
 using Munros.Infrastructure.Data;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Munros.API
 {
@@ -27,6 +29,9 @@ namespace Munros.API
             services.AddScoped<IMunroRepository, MunroRepository>();
 
             services.AddControllers();
+
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+            services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +51,13 @@ namespace Munros.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint(
+                    $"/swagger/Munros/swagger.json", "Munros");
             });
         }
     }
